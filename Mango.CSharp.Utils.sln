@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28917.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Log4Net.ElasticSearch", "Log4Net.ElasticSearch", "{E2A444AF-1633-4D1E-BF3F-4ABC3167B00D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "log4net.ElasticSearch", "Log4Net.ElasticSearch\log4net.ElasticSearchEx\log4net.ElasticSearch.csproj", "{46775E02-BD4A-4C11-A1B5-6CEA4438A6F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Log4Net.ElasticSearch", "Log4Net.ElasticSearch\Mango.Log4Net.ElasticSearch\Mango.Log4Net.ElasticSearch.csproj", "{1D5C181E-443F-48E3-A4F2-ED45A0B9D6A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Log4Net.ElasticSearch.Test", "Log4Net.ElasticSearch\Mango.Log4Net.ElasticSearch.Test\Mango.Log4Net.ElasticSearch.Test.csproj", "{0E78326F-91B1-40E5-840F-A77C754D1554}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Log4Net.ElasticSearch.Test4Net", "Log4Net.ElasticSearch\Mango.Log4Net.ElasticSearch.Test4Net\Mango.Log4Net.ElasticSearch.Test4Net.csproj", "{1E48DA36-740A-44F8-BFC5-7537496D1A22}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46775E02-BD4A-4C11-A1B5-6CEA4438A6F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46775E02-BD4A-4C11-A1B5-6CEA4438A6F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46775E02-BD4A-4C11-A1B5-6CEA4438A6F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46775E02-BD4A-4C11-A1B5-6CEA4438A6F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D5C181E-443F-48E3-A4F2-ED45A0B9D6A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D5C181E-443F-48E3-A4F2-ED45A0B9D6A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D5C181E-443F-48E3-A4F2-ED45A0B9D6A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D5C181E-443F-48E3-A4F2-ED45A0B9D6A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E78326F-91B1-40E5-840F-A77C754D1554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E78326F-91B1-40E5-840F-A77C754D1554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E78326F-91B1-40E5-840F-A77C754D1554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E78326F-91B1-40E5-840F-A77C754D1554}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E48DA36-740A-44F8-BFC5-7537496D1A22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E48DA36-740A-44F8-BFC5-7537496D1A22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E48DA36-740A-44F8-BFC5-7537496D1A22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E48DA36-740A-44F8-BFC5-7537496D1A22}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{46775E02-BD4A-4C11-A1B5-6CEA4438A6F0} = {E2A444AF-1633-4D1E-BF3F-4ABC3167B00D}
+		{1D5C181E-443F-48E3-A4F2-ED45A0B9D6A4} = {E2A444AF-1633-4D1E-BF3F-4ABC3167B00D}
+		{0E78326F-91B1-40E5-840F-A77C754D1554} = {E2A444AF-1633-4D1E-BF3F-4ABC3167B00D}
+		{1E48DA36-740A-44F8-BFC5-7537496D1A22} = {E2A444AF-1633-4D1E-BF3F-4ABC3167B00D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BCD568E2-8ECE-4AEB-AD4F-C2D8FFF2F0AE}
+	EndGlobalSection
+EndGlobal

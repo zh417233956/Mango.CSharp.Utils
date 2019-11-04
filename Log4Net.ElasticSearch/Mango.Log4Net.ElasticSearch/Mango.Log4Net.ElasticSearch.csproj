@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+    <Authors>Mango.ZhongHai</Authors>
+    <Company>Mango</Company>
+    <Description>日志记录上传ES帮助类库</Description>
+    <PackageProjectUrl>https://wiki.517cdn.com/index.php?title=Log4Net.Mango</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net.ElasticSearchEx" Version="2.5.0" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
+    <Reference Include="System.Web" />
+  </ItemGroup>
+</Project>
