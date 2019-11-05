@@ -47,7 +47,7 @@ namespace Mango.Log4Net.ElasticSearch.Logging
             }
 #endif
 
-            string fileName = "Configs\\log4net.config";
+            string fileName = "Configs/log4net.config";
             string configFile = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, fileName);
             if (!File.Exists(configFile))
             {

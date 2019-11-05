@@ -6,6 +6,7 @@
     <Company>Mango</Company>
     <Description>日志记录上传ES帮助类库</Description>
     <PackageProjectUrl>https://wiki.517cdn.com/index.php?title=Log4Net.Mango</PackageProjectUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
