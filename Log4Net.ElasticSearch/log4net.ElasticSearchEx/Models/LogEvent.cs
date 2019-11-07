@@ -154,6 +154,10 @@ namespace log4net.ElasticSearch.Models
                         if (!string.IsNullOrEmpty(mangoLogEvent.Appl_Physical_Path))
                         {
                             var appl_Path_Param = mangoLogEvent.Appl_Physical_Path.Split('\\');
+                            if (appl_Path_Param.Length < 2)
+                            {
+                                appl_Path_Param = mangoLogEvent.Appl_Physical_Path.Split('/');
+                            }
                             if (appl_Path_Param.Length > 3)
                             {
                                 logEvent.project = appl_Path_Param[2];
