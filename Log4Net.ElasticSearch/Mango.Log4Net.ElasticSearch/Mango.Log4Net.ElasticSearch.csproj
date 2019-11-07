@@ -6,11 +6,11 @@
     <Company>Mango</Company>
     <Description>日志记录上传ES帮助类库</Description>
     <PackageProjectUrl>https://wiki.517cdn.com/index.php?title=Log4Net.Mango</PackageProjectUrl>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="log4net.ElasticSearchEx" Version="2.5.0" />
+    <PackageReference Include="log4net.ElasticSearchEx" Version="2.5.0.1" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
