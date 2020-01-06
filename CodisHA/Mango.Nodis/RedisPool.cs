@@ -50,7 +50,7 @@ namespace Mango.Nodis
             {
                 zkhelper.Dispose();
             }
-            zkhelper = new ZooKeeperHelper(log, zkAddr, zkProxyDir, zkSessionTimeoutMs,
+            zkhelper = new ZooKeeperHelper(log, zkAddr, zkProxyDir, zkSessionTimeout,
                 (nodes) =>
                 {
                     foreach (var item in nodes)
@@ -175,7 +175,7 @@ namespace Mango.Nodis
             {
                 zkhelper.Dispose();
             }
-            zkhelper = new ZooKeeperHelper(log, zkAddr, zkProxyDir, zkSessionTimeoutMs,
+            zkhelper = new ZooKeeperHelper(log, zkAddr, zkProxyDir, zkSessionTimeout,
                 (nodes) =>
                 {
                     foreach (var item in nodes)
@@ -276,19 +276,19 @@ namespace Mango.Nodis
 
         #region ZK配置
         private string zkAddr;
-        private int zkSessionTimeoutMs;
+        private int zkSessionTimeout;
         private string zkProxyDir;
         private ZooKeeperHelper zkhelper;
         /// <summary>
         /// ZK信息配置
         /// </summary>
         /// <param name="zkAddr"></param>
-        /// <param name="zkSessionTimeoutMs"></param>
+        /// <param name="zkSessionTimeout"></param>
         /// <returns></returns>
-        public RedisPool CuratorClient(string zkAddr, int zkSessionTimeoutMs = 20)
+        public RedisPool CuratorClient(string zkAddr, int zkSessionTimeout = 20)
         {
             this.zkAddr = zkAddr;
-            this.zkSessionTimeoutMs = zkSessionTimeoutMs;
+            this.zkSessionTimeout = zkSessionTimeout;
             return this;
         }
         /// <summary>

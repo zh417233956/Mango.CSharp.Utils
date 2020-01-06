@@ -27,7 +27,7 @@ namespace Mango.Nodis
         /// <param name="defaultdb">默认redis连接DB</param>
         public static void Init(string zkhosts, string db_proxy, int poolSize = 1, int defaultdb = 0)
         {
-            redisPool = RoundRobinSSRedisPool.Create().CuratorClient(zkhosts, 5000).ZkProxyDir(db_proxy).PoolConfig(poolSize, defaultdb).Build();
+            redisPool = RoundRobinSSRedisPool.Create().CuratorClient(zkhosts, 50).ZkProxyDir(db_proxy).PoolConfig(poolSize, defaultdb).Build();
         }
         /// <summary>
         /// 获取Redis连接
@@ -47,7 +47,7 @@ namespace Mango.Nodis
         /// <param name="defaultdb">默认redis连接DB</param>
         public static void Init(string zkhosts, string db_proxy, int defaultdb = 0)
         {
-            instance = SERedisClient.Create().CuratorClient(zkhosts, 5000).ZkProxyDir(db_proxy).DefaultDB(defaultdb).Build();
+            instance = SERedisClient.Create().CuratorClient(zkhosts, 50).ZkProxyDir(db_proxy).DefaultDB(defaultdb).Build();
         }
         /// <summary>
         /// 获取Redis连接实例
