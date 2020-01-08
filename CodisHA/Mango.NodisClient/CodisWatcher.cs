@@ -31,8 +31,8 @@ namespace Mango.NodisClient
         public string Path
         {
             //TODO:正式改成jodis
-            //get { return $"/jodis/{path}"; }
-            get { return $"jodis.{path}"; }
+            get { return $"/jodis/{path}"; }
+            //get { return $"jodis.{path}"; }
             set { path = value; }
         }
 
