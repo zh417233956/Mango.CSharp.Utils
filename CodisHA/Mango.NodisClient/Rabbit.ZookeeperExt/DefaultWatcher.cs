@@ -26,11 +26,19 @@ namespace Mango.NodisClient.Rabbit.ZookeeperExt
         /// </summary>
         /// <param name="zk"></param>
         public DefaultWatcher(ZooKeeperClient zk)
-        {            
+        {
             _zk = zk;
         }
 
+#if NET40
+        public static readonly Task CompletedTask = Task.Factory.StartNew(() =>{
+            //做一些逻辑运算
+            return 1;
+        });
+#else
         public static readonly Task CompletedTask = Task.FromResult(1);
+#endif
+
         /// <summary>
         /// 监听实现
         /// 可重写

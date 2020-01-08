@@ -12,9 +12,9 @@ namespace Mango.NodisClient.Test
         private ZooKeeperHelper zkhelper;
         public UnitTest()
         {
-            zkAddr = "192.168.4.79:2181";
-            zkSessionTimeout = 20;
-            zkProxyDir = "codis-mango";
+            zkAddr = "localhost:20000";
+            zkSessionTimeout = 5000;
+            zkProxyDir = "mango";
         }
 
         [TestMethod]
@@ -37,6 +37,7 @@ namespace Mango.NodisClient.Test
                });
 
             var pools = zkhelper.pools;
+
         }
     }
 }

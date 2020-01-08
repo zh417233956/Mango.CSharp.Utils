@@ -19,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Nodis.NetCore.Test", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Nodis.Net.Test", "Mango.Nodis.Net.Test\Mango.Nodis.Net.Test.csproj", "{E3DDE476-B63E-444A-A14A-B1E63D556CC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.NodisClient", "Mango.NodisClient\Mango.NodisClient.csproj", "{5E630A34-D8DB-49E3-8A9B-D1F1601A82F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.NodisClient", "Mango.NodisClient\Mango.NodisClient.csproj", "{5E630A34-D8DB-49E3-8A9B-D1F1601A82F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.NodisClient.Test", "Mango.NodisClient.Test\Mango.NodisClient.Test.csproj", "{9545EA5C-F554-4532-9F38-81F422C5290F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.NodisClient.Console", "Mango.NodisClient.Console\Mango.NodisClient.Console.csproj", "{7DD7BEC6-A56B-4A07-90A9-A7B29808C34D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{9545EA5C-F554-4532-9F38-81F422C5290F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9545EA5C-F554-4532-9F38-81F422C5290F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9545EA5C-F554-4532-9F38-81F422C5290F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD7BEC6-A56B-4A07-90A9-A7B29808C34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD7BEC6-A56B-4A07-90A9-A7B29808C34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD7BEC6-A56B-4A07-90A9-A7B29808C34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD7BEC6-A56B-4A07-90A9-A7B29808C34D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

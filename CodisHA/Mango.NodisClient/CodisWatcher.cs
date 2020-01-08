@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using org.apache.zookeeper;
+using System.Threading.Tasks;
 
 namespace Mango.NodisClient
 {
@@ -29,7 +30,9 @@ namespace Mango.NodisClient
         //TODO:正式使用
         public string Path
         {
-            get { return $"/jodis/{path}"; }
+            //TODO:正式改成jodis
+            //get { return $"/jodis/{path}"; }
+            get { return $"jodis.{path}"; }
             set { path = value; }
         }
 
@@ -59,16 +62,16 @@ namespace Mango.NodisClient
         /// 获取当前服务器节点
         /// </summary>
         /// <returns></returns>
-        public List<CodisProxyInfo> GetPools()
+        public async Task<List<CodisProxyInfo>> GetPools()
         {
             if (pools == null || _zkReconnPoolState == 1)
             {
                 CodisProxyInfo itemCodisProxy = null;
                 var allPools = new List<CodisProxyInfo>();
-                var childPath = _zk.client.GetChildrenAsync(Path).Result;
+                var childPath = await _zk.client.GetChildrenAsync(Path);
                 foreach (var itemPath in childPath)
                 {
-                    var iteData = _zk.client.GetDataAsync($"{Path}/{itemPath}").Result;
+                    var iteData = await _zk.client.GetDataAsync($"{Path}/{itemPath}");
                     itemCodisProxy = JsonToObject<CodisProxyInfo>(Encoding.UTF8.GetString(iteData.ToArray()));
                     itemCodisProxy.Node = itemPath;
                     allPools.Add(itemCodisProxy);

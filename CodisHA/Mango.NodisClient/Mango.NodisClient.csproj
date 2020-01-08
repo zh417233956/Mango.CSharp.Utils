@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;</TargetFrameworks>
+    <TargetFrameworks>net40;net45;</TargetFrameworks>
     <!--<TargetFramework>netstandard2.0;</TargetFramework>-->
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="ZooKeeperNetEx" Version="3.4.9.3" />
-  </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
     <Reference Include="System.Web.Extensions" />
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="ZooKeeperNetEx" Version="3.4.9.3" />
+  </ItemGroup>
 </Project>

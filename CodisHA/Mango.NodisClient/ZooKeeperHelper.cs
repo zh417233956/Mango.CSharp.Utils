@@ -33,7 +33,7 @@ namespace Mango.NodisClient
         /// <summary>
         /// 当前的节点列表
         /// </summary>
-        public List<CodisProxyInfo> pools => codiswatcher.GetPools();
+        public List<CodisProxyInfo> pools => AsyncUtil.RunSync(()=> codiswatcher.GetPools());
 
         /// <summary>
         /// 执行与释放或重置非托管资源
