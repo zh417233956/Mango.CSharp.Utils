@@ -1,7 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;</TargetFrameworks>
+    <TargetFrameworks>net40;net45;netstandard2.0;</TargetFrameworks>
+    <Description>对zookeeper进行封装稳定连接并实现Codis节点的监听</Description>
+    <Authors>Mango.ZhongHai</Authors>
+    <Company>Mango</Company>
     <!--<TargetFramework>netstandard2.0;</TargetFramework>-->
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
@@ -9,5 +12,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ZooKeeperNetEx" Version="3.4.9.3" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
 </Project>
