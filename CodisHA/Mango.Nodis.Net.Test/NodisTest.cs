@@ -44,13 +44,32 @@ namespace Mango.Nodis.Net.Test
             //Assert.IsNotNull(resData.Exists(m => m.Contains("codis-mango")));
         }
         /// <summary>
+        /// 获取Codis连接，实现redis读/写/删
+        /// </summary>
+        [TestMethod]
+        public void GetCodisValue()
+        {
+            //初始化redis连接信息;
+            CodisHA.RedisPoolBuilder.Init("192.168.4.79:2181", "codis-mango");
+            //获取redis连接数据库
+            string value = "null";
+            using (var redisClient = CodisHA.RedisPoolBuilder.GetClient())
+            {
+                redisClient.Db = 5;
+                redisClient.Set<string>("codisproxytest", "zhh");
+                value = redisClient.Get<string>("codisproxytest");
+                redisClient.Remove("codisproxytest");
+            }
+            Assert.AreEqual("zhh", value);
+        }
+        /// <summary>
         /// 获取redis连接，实现redis读/写/删
         /// </summary>
         [TestMethod]
         public void GetRedisValue()
         {
             //初始化redis连接信息;
-            CodisHA.RedisPoolBuilder.Init("192.168.4.79:2181", "codis-mango");
+            CodisHA.RedisPoolBuilder.InitRedis("192.168.4.79:6378");
             //获取redis连接数据库
             string value = "null";
             using (var redisClient = CodisHA.RedisPoolBuilder.GetClient())

@@ -79,9 +79,9 @@ namespace Mango.CodisHA
             {
                 return null;
             }
-        }
+        }       
         /// <summary>
-        /// 建立连接池
+        /// Codis建立连接池
         /// </summary>
         private void CreateManager()
         {
@@ -125,6 +125,79 @@ namespace Mango.CodisHA
                 ConnectTimeout = 1000
             };
         }
+
+        #region Redis集群
+
+        /// <summary>
+        /// 构建一个监听zk变化自动更新的连接池
+        /// </summary>
+        /// <returns></returns>
+        public RedisPool BuildRedis()
+        {
+            validateRedis();
+
+            CreateManagerByRedis();
+
+            return this;
+        }
+
+        string readWriteHosts = "";
+        string readOnlyHosts = "";
+        /// <summary>
+        /// 设置Redis主机IP配置信息
+        /// 有密码的格式：redis:password@127.0.0.1:6379
+        /// 无密码的格式：127.0.0.1:6379
+        /// </summary>
+        /// <param name="readWriteHosts">读写，主</param>
+        /// <param name="readOnlyHosts">只读，从</param>
+        /// <returns></returns>
+        public RedisPool RedisConfig(string readWriteHosts, string readOnlyHosts = "")
+        {
+            this.readWriteHosts = readWriteHosts;
+            this.readOnlyHosts = readOnlyHosts;
+            return this;
+        }
+        /// <summary>
+        /// Redis建立连接池
+        /// </summary>
+        private void CreateManagerByRedis()
+        {
+            // 读取Redis主机IP配置信息
+            // 有密码的格式：redis:password@127.0.0.1:6379
+            // 无密码的格式：127.0.0.1:6379
+            string[] redisMasterHosts = readWriteHosts.Split(',');
+            // 如果Redis服务器是主从配置，则还需要读取Redis Slave机的IP配置信息
+            string[] redisSlaveHosts = null;
+            if (!string.IsNullOrWhiteSpace(readOnlyHosts))
+            {
+                redisSlaveHosts = readOnlyHosts.Split(',');
+            }
+
+            var redisClientManagerConfig = new RedisClientManagerConfig
+            {
+                MaxWritePoolSize = maxWritePoolSize,
+                DefaultDb = defaultDb,
+                AutoStart = true
+            };
+
+            Manager = new PooledRedisClientManager(redisMasterHosts, redisSlaveHosts, redisClientManagerConfig)
+            {
+                PoolTimeout = 2000,
+                ConnectTimeout = 1000
+            };
+        }
+        /// <summary>
+        /// 参数校验检查
+        /// </summary>
+        private void validateRedis()
+        {
+            if (string.IsNullOrEmpty(readWriteHosts))
+            {
+                throw new Exception("readWriteHosts can not be null");
+            }           
+        }
+        #endregion Redis集群
+
         #endregion NETFRAMEWORK
 #else
         #region NETSTANDARD
@@ -233,6 +306,68 @@ namespace Mango.CodisHA
             }
         }
         #endregion
+
+        #region Redis集群
+
+        /// <summary>
+        /// 构建一个监听zk变化自动更新的连接池
+        /// </summary>
+        /// <returns></returns>
+        public RedisPool BuildRedis()
+        {
+            validateRedis();
+
+            CreateInstanceByRedis();
+
+            return this;
+        }
+
+        string configurationStr = "";
+        string redisMasterHostsStr = "";
+        string connectStr = "";
+        /// <summary>
+        /// 设置Redis主机IP配置信息,多个用逗号分隔
+        /// </summary>
+        /// <param name="redisMasterHostsStr"></param>
+        /// <returns></returns>
+        public RedisPool RedisConfigHost(string redisMasterHostsStr)
+        {
+            this.redisMasterHostsStr = redisMasterHostsStr;
+            var constr = "{0},DefaultDatabase={1}";
+            connectStr = string.Format(constr, redisMasterHostsStr, defaultDb);
+            return this;
+        }
+
+        /// <summary>
+        /// 设置RedisSe的configuration连接
+        /// </summary>
+        /// <param name="configurationStr"></param>
+        /// <returns></returns>
+        public RedisPool RedisConfiguration(string configurationStr)
+        {
+            connectStr = configurationStr;
+            return this;
+        }
+
+        /// <summary>
+        /// 使用一个静态属性来返回已连接的实例，如下列中所示。这样，一旦 ConnectionMultiplexer 断开连接，便可以初始化新的连接实例。
+        /// </summary>
+        public void CreateInstanceByRedis()
+        {
+            Instance = ConnectionMultiplexer.Connect(connectStr);
+        }
+
+        /// <summary>
+        /// 参数校验检查
+        /// </summary>
+        private void validateRedis()
+        {
+            if (string.IsNullOrEmpty(redisMasterHostsStr) && string.IsNullOrEmpty(configurationStr))
+            {
+                throw new Exception("redisMasterHostsStr or configurationStr can not be null");
+            }
+        }
+        #endregion Redis集群
 #endif
 
         #region ZK配置
