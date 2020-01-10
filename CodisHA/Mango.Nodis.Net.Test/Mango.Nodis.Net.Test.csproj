@@ -84,9 +84,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mango.Nodis\Mango.Nodis.csproj">
-      <Project>{bc358aa1-39c6-4ec2-9b22-0bd4341fac3c}</Project>
-      <Name>Mango.Nodis</Name>
+    <ProjectReference Include="..\Mango.CodisHA\Mango.CodisHA.csproj">
+      <Project>{8a2f5e00-e2e0-473b-acfc-634ddcf91ab3}</Project>
+      <Name>Mango.CodisHA</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

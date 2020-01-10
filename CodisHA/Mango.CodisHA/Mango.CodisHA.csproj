@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net45;netstandard2.0;net40;</TargetFrameworks>
+    <Company>Mango</Company>
+    <Authors>Mango.ZhongHai</Authors>
+    <Description>CodisHA，实现了Redis针对Codis的节点上/下线的封装。
+.net4.0/4.5基于ServiceStack.Redis；
+.net core基于StackExchange.Redis；</Description>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.0.0</Version>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
+    <Reference Include="System.Web.Extensions" />
+    <PackageReference Include="ServiceStack.Common" Version="3.9.71" />
+    <PackageReference Include="ServiceStack.Redis" Version="3.9.71" />
+    <PackageReference Include="ServiceStack.Text" Version="3.9.71" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="StackExchange.Redis" Version="2.0.601" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Mango.NodisClient" Version="1.0.0" />
+  </ItemGroup>
+</Project>

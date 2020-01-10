@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-#if NETFRAMEWORK
+﻿#if NETFRAMEWORK
 using ServiceStack.Redis;
 #else
 using StackExchange.Redis;
 #endif
 
-namespace Mango.Nodis
+namespace Mango.CodisHA
 {
     /// <summary>
     /// Redis连接池构建类
