@@ -56,7 +56,7 @@ namespace log4net.ElasticSearch.Models
 
         #region 扩展 接口级日志
 
-        public string uuid { get; set; }
+        public string ltctraid { get; set; }
         public object exception { get; set; }
         public string uuidtag { get; set; }
         public string message { get; set; }
@@ -64,6 +64,7 @@ namespace log4net.ElasticSearch.Models
         public string response { get; set; }
         public IDictionary<string, string> otherMsg { get; set; }
         public string project { get; set; }
+        public string module { get; set; }
         public string hostId { get; set; }
         public string hostName { get; set; }
         public string domain { get; set; }
@@ -112,7 +113,8 @@ namespace log4net.ElasticSearch.Models
                     }
                     if (mangoLogEvent != null)
                     {
-                        logEvent.uuid = mangoLogEvent.uuid;
+                        logEvent.ltctraid = mangoLogEvent.uuid;
+                        logEvent.module = mangoLogEvent.module;
                         logEvent.uuidtag = mangoLogEvent.uuidtag;
                         logEvent.message = mangoLogEvent.message;
                         logEvent.request = mangoLogEvent.request;

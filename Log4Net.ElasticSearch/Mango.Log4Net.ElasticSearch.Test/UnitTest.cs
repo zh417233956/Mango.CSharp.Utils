@@ -10,7 +10,7 @@ namespace Mango.Log4Net.ElasticSearch.Test
         [Fact]
         public void Test()
         {
-            var msg = new Models.LogEvent(Guid.NewGuid().ToString(), "测试.net core", "hello Mango.Log4Net.ElasticSearch");
+            var msg = new Models.LogEvent(Guid.NewGuid().ToString(), "测试.net core","core_unittest", "hello Mango.Log4Net.ElasticSearch");
             log.Error(msg, new Exception("手动抛出异常"));
         }
     }

@@ -17,7 +17,8 @@ namespace Mango.Nosql.MongoTest
             public MongoRepository MongoRepository;
             public MongoDbTest()
             {
-                var url = "mongodb://192.168.50.138:27020";
+                //var url = "mongodb://192.168.50.138:27020";
+                var url = "mongodb://root:1234@192.168.50.190:27017";
                 MongoRepository = new MongoRepository(url);
             }
             #region Add

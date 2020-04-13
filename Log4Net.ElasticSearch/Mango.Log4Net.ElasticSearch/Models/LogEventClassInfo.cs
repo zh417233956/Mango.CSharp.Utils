@@ -5,7 +5,7 @@
     /// </summary>
     public class LogEventClassInfo : LogEvent
     {
-        public LogEventClassInfo() : base("", "")
+        public LogEventClassInfo() : base("", "","")
         {
 
         }

@@ -13,12 +13,14 @@ namespace Mango.Log4Net.ElasticSearch.Models
         /// </summary>
         /// <param name="uuid">业务编号</param>
         /// <param name="msg">消息描述</param>
+        /// <param name="module">业务类型</param>
         /// <param name="request">请求消息</param>
         /// <param name="response">响应消息</param>
         /// <param name="otherMsg">其它追加消息</param>
-        public LogEvent(string uuid, string msg, string request = "", string response = "", Dictionary<string, string> otherMsg = null)
+        public LogEvent(string uuid, string msg,string module, string request = "", string response = "", Dictionary<string, string> otherMsg = null)
         {
             this._uuid = uuid;
+            this.module = module;
             this.message = msg;
             this.request = request;
             this.response = response;
@@ -44,6 +46,7 @@ namespace Mango.Log4Net.ElasticSearch.Models
             }
         }
 
+        public string module { get; set; }
         public string uuidtag { get; set; }
         public string message { get; set; }
         public string request { get; set; }

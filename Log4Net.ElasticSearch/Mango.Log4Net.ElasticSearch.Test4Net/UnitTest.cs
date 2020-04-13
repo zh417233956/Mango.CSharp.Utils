@@ -11,7 +11,7 @@ namespace Mango.Log4Net.ElasticSearch.Test4Net
         [TestMethod]
         public void TestMethod()
         {
-            var msg = new Models.LogEvent(Guid.NewGuid().ToString(), "测试.net", "hello Mango.Log4Net.ElasticSearch");
+            var msg = new Models.LogEvent(Guid.NewGuid().ToString(), "测试.net","net_unittest", "hello Mango.Log4Net.ElasticSearch");
             log.Error(msg, new Exception("手动抛出异常"));
         }
     }

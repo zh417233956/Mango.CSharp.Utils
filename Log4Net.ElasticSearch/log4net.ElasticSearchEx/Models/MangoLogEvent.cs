@@ -31,6 +31,7 @@ namespace log4net.ElasticSearch.Models
             }
             set { _uuid = value; }
         }
+        public string module { get; set; }
         public string uuidtag { get; set; }
         public string message { get; set; }
         public string request { get; set; }

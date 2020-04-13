@@ -84,6 +84,7 @@ namespace Mango.Log4Net.ElasticSearch.Logging
                 var msgModel = (Models.LogEvent)message;
                 Models.LogEventClassInfo _message = new Models.LogEventClassInfo();
                 _message.uuid = msgModel.uuid;
+                _message.module = msgModel.module;
                 _message.uuidtag = msgModel.uuidtag;
                 _message.message = msgModel.message;
                 _message.request = msgModel.request;
