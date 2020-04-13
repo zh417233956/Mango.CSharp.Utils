@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Nosql.Mongo.Test", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Nodis", "CodisHA\Mango.Nodis\Mango.Nodis.csproj", "{77EB7803-59C2-4B05-B89C-44BAF2F74416}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Nosql.MongoNET40ForLog", "MongoDB\Mango.Nosql.MongoNET40ForLog\Mango.Nosql.MongoNET40ForLog.csproj", "{3A8A956A-3FEC-4E8E-B818-164565399D6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{77EB7803-59C2-4B05-B89C-44BAF2F74416}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77EB7803-59C2-4B05-B89C-44BAF2F74416}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77EB7803-59C2-4B05-B89C-44BAF2F74416}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A8A956A-3FEC-4E8E-B818-164565399D6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A8A956A-3FEC-4E8E-B818-164565399D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A8A956A-3FEC-4E8E-B818-164565399D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A8A956A-3FEC-4E8E-B818-164565399D6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +96,7 @@ Global
 		{3181F5A9-6D99-4212-9283-648A2E8E44B7} = {CD9BCB0D-E71E-4C81-B231-C1BABA6441C6}
 		{0E1FDFDB-E827-45D8-A497-2EEA835544D4} = {CD9BCB0D-E71E-4C81-B231-C1BABA6441C6}
 		{77EB7803-59C2-4B05-B89C-44BAF2F74416} = {36329DAD-B209-4C4A-90D5-702F59842BB9}
+		{3A8A956A-3FEC-4E8E-B818-164565399D6B} = {CD9BCB0D-E71E-4C81-B231-C1BABA6441C6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BCD568E2-8ECE-4AEB-AD4F-C2D8FFF2F0AE}
