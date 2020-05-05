@@ -92,7 +92,7 @@ namespace Mango.Log4Net.ElasticSearch.Logging
                 _message.otherMsg = msgModel.otherMsg;
 
                 _message.methodName = _frame.GetMethod().Name;
-                _message.className = _frame.GetMethod().DeclaringType.FullName;
+                _message.className = _frame.GetMethod().DeclaringType?.FullName;
                 _message.fileName = _frame.GetFileName();
                 _message.lineNumber = _frame.GetFileLineNumber();
                 var fullinfoFormat = "{0}.{1}({2}:{3})";
