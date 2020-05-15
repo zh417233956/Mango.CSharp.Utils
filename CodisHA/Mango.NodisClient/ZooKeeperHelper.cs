@@ -12,7 +12,7 @@ namespace Mango.NodisClient
         public ZooKeeperClient _zk;
         private CodisWatcher.DeleteNodeDel deleteNodeDel;
         private CodisWatcher.AddNodeDel addNodeDel;
-        CodisWatcher codiswatcher;
+        public CodisWatcher codiswatcher;
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -34,6 +34,11 @@ namespace Mango.NodisClient
         /// 当前的节点列表
         /// </summary>
         public List<CodisProxyInfo> pools => AsyncUtil.RunSync(()=> codiswatcher.GetPools());
+
+        /// <summary>
+        /// 强制从服务器获取的节点列表
+        /// </summary>
+        public List<CodisProxyInfo> refreshPools => AsyncUtil.RunSync(() => codiswatcher.GetAllPools());
 
         /// <summary>
         /// 执行与释放或重置非托管资源

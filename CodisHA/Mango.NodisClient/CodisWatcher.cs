@@ -66,17 +66,7 @@ namespace Mango.NodisClient
         {
             if (pools == null || _zkReconnPoolState == 1)
             {
-                CodisProxyInfo itemCodisProxy = null;
-                var allPools = new List<CodisProxyInfo>();
-                var childPath = await _zk.client.GetChildrenAsync(Path);
-                foreach (var itemPath in childPath)
-                {
-                    var iteData = await _zk.client.GetDataAsync($"{Path}/{itemPath}");
-                    itemCodisProxy = JsonToObject<CodisProxyInfo>(Encoding.UTF8.GetString(iteData.ToArray()));
-                    itemCodisProxy.Node = itemPath;
-                    allPools.Add(itemCodisProxy);
-                }
-                pools = allPools;
+                await GetAllPools();
                 //如果是断网重连，激活添加节点委托事件
                 if (_zkReconnPoolState == 1)
                 {
@@ -87,6 +77,25 @@ namespace Mango.NodisClient
                     }
                 }
             }
+            return pools;
+        }
+        /// <summary>
+        /// 获取实时服务器节点
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<CodisProxyInfo>> GetAllPools()
+        {
+            CodisProxyInfo itemCodisProxy = null;
+            var allPools = new List<CodisProxyInfo>();
+            var childPath = await _zk.client.GetChildrenAsync(Path);
+            foreach (var itemPath in childPath)
+            {
+                var iteData = await _zk.client.GetDataAsync($"{Path}/{itemPath}");
+                itemCodisProxy = JsonToObject<CodisProxyInfo>(Encoding.UTF8.GetString(iteData.ToArray()));
+                itemCodisProxy.Node = itemPath;
+                allPools.Add(itemCodisProxy);
+            }
+            pools = allPools;
             return pools;
         }
         private DeleteNodeDel deleteNodeDel;
@@ -180,8 +189,8 @@ namespace Mango.NodisClient
                             var deletedPools = new List<CodisProxyInfo>();
                             deletePools.ForEach(n =>
                             {
-                            //_log.InfoFormat($"删除节点:{n.Node}={n.Addr}-{n.State}");
-                            deletedPools.Add(n);
+                                //_log.InfoFormat($"删除节点:{n.Node}={n.Addr}-{n.State}");
+                                deletedPools.Add(n);
                                 pools.Remove(n);
                             });
                             if (deleteNodeDel != null)
