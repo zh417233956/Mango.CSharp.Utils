@@ -11,47 +11,32 @@ namespace Mango.Log4Net.ElasticSearch.Models
         /// <summary>
         /// 消息实体
         /// </summary>
-        /// <param name="uuid">业务编号</param>
-        /// <param name="msg">消息描述</param>
-        /// <param name="module">业务类型</param>
-        /// <param name="request">请求消息</param>
-        /// <param name="response">响应消息</param>
-        /// <param name="otherMsg">其它追加消息</param>
-        public LogEvent(string uuid, string msg,string module, string request = "", string response = "", Dictionary<string, string> otherMsg = null)
+        /// <param name="CustomLogName">业务类型</param>
+        /// <param name="CustomLogMessage">消息描述</param>
+        public LogEvent( string CustomLogName, string CustomLogMessage)
         {
-            this._uuid = uuid;
-            this.module = module;
-            this.message = msg;
-            this.request = request;
-            this.response = response;
-            this.uuidtag = "";
-            this.otherMsg = otherMsg;
-            if (otherMsg == null)
-            {
-                this.otherMsg = new Dictionary<string, string>();
-            }
+            this.CustomLogName = CustomLogName;
+            this.CustomLogMessage = CustomLogMessage;
         }
-        private string _uuid;
+        public string CustomLogName { get; set; }
+        public string CustomLogMessage { get; set; }
 
-        public string uuid
+        /// <summary>
+        /// 消息实体
+        /// </summary>
+        /// <param name="CustomLogName">业务类型</param>
+        /// <param name="CustomLogMessage">消息描述</param>
+        /// <param name="ltctraid">ltctraid</param>
+        /// <param name="requestid">requestid</param>
+        public LogEvent(string CustomLogName, string CustomLogMessage,string ltctraid,string requestid)
         {
-            get
-            {
-                if (string.IsNullOrEmpty(_uuid))
-                {
-                    _uuid = Guid.NewGuid().ToString();
-                    uuidtag = "new";
-                }
-                return _uuid;
-            }
+            this.CustomLogName = CustomLogName;
+            this.CustomLogMessage = CustomLogMessage;
+            ltcid = ltctraid;
+            reqid = requestid;
         }
-
-        public string module { get; set; }
-        public string uuidtag { get; set; }
-        public string message { get; set; }
-        public string request { get; set; }
-        public string response { get; set; }
-        public IDictionary<string, string> otherMsg { get; set; }
+        public string ltcid { get; set; }
+        public string reqid { get; set; }
     }
 
 }

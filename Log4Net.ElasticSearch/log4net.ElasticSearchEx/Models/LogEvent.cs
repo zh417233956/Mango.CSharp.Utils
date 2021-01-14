@@ -15,63 +15,25 @@ namespace log4net.ElasticSearch.Models
     {
         public logEvent()
         {
-            //properties = new Dictionary<string, string>();
         }
-
-        //public string timeStamp { get; set; }
-
-        //public string message { get; set; }
-
-        //public object messageObject { get; set; }
-
-        //public object exception { get; set; }
-
-        //public string loggerName { get; set; }
-
-        //public string domain { get; set; }
-
-        //public string identity { get; set; }
-
-        //public string level { get; set; }
-
-        //public string className { get; set; }
-
-        //public string fileName { get; set; }
-
-        //public string lineNumber { get; set; }
-
-        //public string fullInfo { get; set; }
-
-        //public string methodName { get; set; }
-
-        //public string fix { get; set; }
-
-        //public IDictionary<string, string> properties { get; set; }
-
-        //public string userName { get; set; }
-
-        //public string threadName { get; set; }
-
-        //public string hostName { get; set; }
-
         #region 扩展 接口级日志
-
         public string ltctraid { get; set; }
-        public object exception { get; set; }
-        public string uuidtag { get; set; }
-        public string message { get; set; }
-        public string request { get; set; }
-        public string response { get; set; }
-        public IDictionary<string, string> otherMsg { get; set; }
-        public string project { get; set; }
-        public string module { get; set; }
+        public string requestid { get; set; }
+        public string startTime { get; set; }     
         public string hostId { get; set; }
         public string hostName { get; set; }
-        public string domain { get; set; }
+        public string domain { get; set; }   
+        public string project { get; set; }
         public string level { get; set; }
-        public string fullInfo { get; set; }
-        public string threadName { get; set; }
-        public string timeStamp { get; set; }
+        public string timestamp { get; set; }
+        public object Exception { get; set; }
+        public int RequestUserId { get; set; }
+        public string RequestRaw { get; set; }
+        public string RequestIp { get; set; }
+        public string RequestAgent { get; set; }
+        public string RequestAssembly { get; set; }
+        public string CustomLogMessage { get; set; }
+        public string CustomLogName { get; set; }
 
         #endregion 扩展 接口级日志
 
@@ -84,15 +46,10 @@ namespace log4net.ElasticSearch.Models
         {
             var logEvent = new logEvent
             {
-                //loggerName = loggingEvent.LoggerName,
                 domain = loggingEvent.Domain,
-                //identity = loggingEvent.Identity,
-                threadName = loggingEvent.ThreadName,
-                //userName = loggingEvent.UserName,
-                timeStamp = loggingEvent.TimeStamp.ToUniversalTime().ToString("O"),
-                exception = loggingEvent.ExceptionObject == null ? new object() : JsonSerializableException.Create(loggingEvent.ExceptionObject),
-                message = loggingEvent.RenderedMessage,
-                //fix = loggingEvent.Fix.ToString(),
+                timestamp = loggingEvent.TimeStamp.ToUniversalTime().ToString("O"),
+                Exception = loggingEvent.ExceptionObject == null ? new object() : JsonSerializableException.Create(loggingEvent.ExceptionObject),
+                CustomLogMessage = loggingEvent.RenderedMessage,
                 hostName = Environment.MachineName,
                 level = loggingEvent.Level == null ? null : loggingEvent.Level.DisplayName
             };
@@ -113,26 +70,17 @@ namespace log4net.ElasticSearch.Models
                     }
                     if (mangoLogEvent != null)
                     {
-                        logEvent.ltctraid = mangoLogEvent.uuid;
-                        logEvent.module = mangoLogEvent.module;
-                        logEvent.uuidtag = mangoLogEvent.uuidtag;
-                        logEvent.message = mangoLogEvent.message;
-                        logEvent.request = mangoLogEvent.request;
-                        logEvent.response = mangoLogEvent.response;
-                        if (mangoLogEvent.otherMsg.Count > 0)
-                        {
-                            logEvent.otherMsg = mangoLogEvent.otherMsg;
-                        }
-                        else
-                        {
-                            logEvent.otherMsg = new Dictionary<string, string>();
-                        }
+                        logEvent.ltctraid = mangoLogEvent.ltctraid;
+                        logEvent.requestid = mangoLogEvent.requestid;
+                        logEvent.startTime = mangoLogEvent.startTime.ToUniversalTime().ToString("O");
+                        logEvent.CustomLogName = mangoLogEvent.CustomLogName;
+                        logEvent.CustomLogMessage = mangoLogEvent.CustomLogMessage;
+                        logEvent.RequestUserId = 0;
+                        logEvent.RequestRaw = mangoLogEvent.RequestRaw;
+                        logEvent.RequestIp = mangoLogEvent.RequestIp;
+                        logEvent.RequestAgent = mangoLogEvent.RequestAgent;
                         //类信息
-                        //logEvent.className = mangoLogEvent.className;
-                        //logEvent.fileName = mangoLogEvent.fileName;
-                        //logEvent.lineNumber = mangoLogEvent.lineNumber.ToString();                       
-                        //logEvent.methodName = mangoLogEvent.methodName;
-                        logEvent.fullInfo = mangoLogEvent.fullInfo;
+                        logEvent.RequestAssembly = mangoLogEvent.fullInfo;
 
 
                         //上下文信息
@@ -180,13 +128,9 @@ namespace log4net.ElasticSearch.Models
 
             //if (loggingEvent.LocationInformation != null)
             //扩展 新增了判断条件
-            if (string.IsNullOrEmpty(logEvent.fullInfo) && loggingEvent.LocationInformation != null)
+            if (string.IsNullOrEmpty(logEvent.RequestAssembly) && loggingEvent.LocationInformation != null)
             {
-                //logEvent.className = loggingEvent.LocationInformation.ClassName;
-                //logEvent.fileName = loggingEvent.LocationInformation.FileName;
-                //logEvent.lineNumber = loggingEvent.LocationInformation.LineNumber;
-                logEvent.fullInfo = loggingEvent.LocationInformation.FullInfo;
-                //logEvent.methodName = loggingEvent.LocationInformation.MethodName;
+                logEvent.RequestAssembly = loggingEvent.LocationInformation.FullInfo;
             }
 
             AddProperties(loggingEvent, logEvent);

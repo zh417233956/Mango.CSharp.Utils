@@ -81,15 +81,16 @@ namespace Mango.Log4Net.ElasticSearch.Logging
             var _frame = stackTrance.GetFrame(4);
             if (_frame != null)
             {
+                string ltctraid = "";
+                string requestid = "";
                 var msgModel = (Models.LogEvent)message;
                 Models.LogEventClassInfo _message = new Models.LogEventClassInfo();
-                _message.uuid = msgModel.uuid;
-                _message.module = msgModel.module;
-                _message.uuidtag = msgModel.uuidtag;
-                _message.message = msgModel.message;
-                _message.request = msgModel.request;
-                _message.response = msgModel.response;
-                _message.otherMsg = msgModel.otherMsg;
+                _message.ltctraid = Guid.NewGuid().ToString("N");
+                _message.requestid = Guid.NewGuid().ToString("N");
+                _message.ltcid = msgModel.ltcid;
+                _message.reqid = msgModel.reqid;
+                _message.CustomLogMessage = msgModel.CustomLogMessage;
+                _message.CustomLogName = msgModel.CustomLogName;
 
                 _message.methodName = _frame.GetMethod().Name;
                 _message.className = _frame.GetMethod().DeclaringType?.FullName;
@@ -103,14 +104,20 @@ namespace Mango.Log4Net.ElasticSearch.Logging
 #if !NETCF && !SSCLI && !NETSTANDARD
                 //ASP.NET,获取上下文
                 System.Web.HttpContext context = null;
+                
                 if (System.Web.HttpContext.Current != null)
                 {
                     context = System.Web.HttpContext.Current;
                     _message.SERVER_NAME = context.Request.Params["SERVER_NAME"];
                     _message.HTTP_HOST = context.Request.Params["HTTP_HOST"];
                     _message.SERVER_PORT = context.Request.Params["SERVER_PORT"];
-                    _message.LOCAL_ADDR= context.Request.Params["LOCAL_ADDR"];
+                    _message.LOCAL_ADDR= context.Request.Params["LOCAL_ADDR"].Replace("::ffff:", "");
+                    _message.RequestIp = context.Request.Params["Remote_ADDR"].Replace("::ffff:", "");
                     _message.Appl_Physical_Path= context.Request.Params["Appl_Physical_Path"];
+                    _message.RequestAgent = context.Request.Headers["User-Agent"].ToString();
+                    _message.RequestRaw = context.Request.Path.ToString() + context.Request.QueryString.ToString();
+                    ltctraid = context.Response.Headers["x-mg-ltctraid"].ToString();
+                    requestid = context.Response.Headers["x-mg-requestpid"].ToString();
                 }
                 
 #elif NETSTANDARD
@@ -121,15 +128,37 @@ namespace Mango.Log4Net.ElasticSearch.Logging
                     _message.SERVER_NAME = context.Request.Host.Value;
                     _message.HTTP_HOST = context.Request.Host.Host;
                     _message.SERVER_PORT = context.Request.Host.Port.ToString();
-                    _message.LOCAL_ADDR = context.Connection.LocalIpAddress.ToString();
+                    _message.LOCAL_ADDR = context.Connection.LocalIpAddress.ToString().Replace("::ffff:", "");
+                    _message.RequestIp = context.Connection.RemoteIpAddress.ToString().Replace("::ffff:", "");
                     _message.Appl_Physical_Path = AppDomain.CurrentDomain.BaseDirectory;
+                    _message.RequestAgent = context.Request.Headers["User-Agent"].ToString();
+                    _message.RequestRaw = context.Request.Path.Value + context.Request.QueryString.Value;
+                    ltctraid = context.Response.Headers["x-mg-ltctraid"].ToString();
+                    requestid = context.Response.Headers["x-mg-requestpid"].ToString();
                 }
                 else
-                {
+                {                    
                     _message.SERVER_NAME = AppDomain.CurrentDomain.FriendlyName;
                     _message.Appl_Physical_Path = AppDomain.CurrentDomain.BaseDirectory;
                 }
 #endif
+                if (!string.IsNullOrEmpty(ltctraid))
+                {
+                    _message.ltctraid = ltctraid;
+                }
+                if (!string.IsNullOrEmpty(requestid))
+                {
+                    _message.requestid = requestid;
+                }
+                if (!string.IsNullOrEmpty(_message.ltcid))
+                {
+                    _message.ltctraid = _message.ltcid;
+                }
+                if (!string.IsNullOrEmpty(_message.reqid))
+                {
+                    _message.requestid = _message.reqid;
+                }
+
                 return SerializeObject(_message);
 
             }

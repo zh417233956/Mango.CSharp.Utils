@@ -10,33 +10,25 @@ namespace log4net.ElasticSearch.Models
     {
         public MangoLogEvent()
         {
-            this.message = "";
-            this.request = "";
-            this.response = "";
-            this.uuidtag = "";
-            otherMsg = new Dictionary<string, string>();
+            this.CustomLogMessage = "";
         }
-        private string _uuid;
+        private string _ltctraid;
 
-        public string uuid
+        public string ltctraid
         {
             get
             {
-                if (string.IsNullOrEmpty(_uuid))
+                if (string.IsNullOrEmpty(_ltctraid))
                 {
-                    _uuid = Guid.NewGuid().ToString();
-                    uuidtag = "new";
+                    _ltctraid = Guid.NewGuid().ToString();
                 }
-                return _uuid;
+                return _ltctraid;
             }
-            set { _uuid = value; }
+            set { _ltctraid = value; }
         }
-        public string module { get; set; }
-        public string uuidtag { get; set; }
-        public string message { get; set; }
-        public string request { get; set; }
-        public string response { get; set; }
-        public IDictionary<string, string> otherMsg { get; set; }
+        public string requestid { get; set; }
+        public string CustomLogName { get; set; }
+        public string CustomLogMessage { get; set; }
 
         #region 调用类信息
         public string className { get; set; }
@@ -51,6 +43,9 @@ namespace log4net.ElasticSearch.Models
         /// 服务器IP
         /// </summary>
         public string LOCAL_ADDR { get; set; }
+        public string RequestIp { get; set; }
+        public string RequestAgent { get; set; }
+        public string RequestRaw { get; set; }
         /// <summary>
         /// 获取域名
         /// </summary>
@@ -68,5 +63,13 @@ namespace log4net.ElasticSearch.Models
         /// </summary>
         public string Appl_Physical_Path { get; set; }
         #endregion
+
+        private DateTime _startTime = DateTime.Now;
+
+        public DateTime startTime
+        {
+            get { return _startTime; }
+            set { _startTime = value; }
+        }
     }
 }

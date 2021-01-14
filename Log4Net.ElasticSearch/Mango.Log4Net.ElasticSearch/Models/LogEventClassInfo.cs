@@ -1,15 +1,18 @@
-﻿namespace Mango.Log4Net.ElasticSearch.Models
+﻿using System;
+
+namespace Mango.Log4Net.ElasticSearch.Models
 {
     /// <summary>
     /// 携带类信息
     /// </summary>
     public class LogEventClassInfo : LogEvent
     {
-        public LogEventClassInfo() : base("", "","")
+        public LogEventClassInfo() : base("", "")
         {
 
         }
-        public new string uuid { get; set; }
+        public string ltctraid { get; set; }
+        public string requestid { get; set; }
         #region 调用类信息
         public string className { get; set; }
         public string fileName { get; set; }
@@ -24,6 +27,10 @@
         /// 服务器IP
         /// </summary>
         public string LOCAL_ADDR { get; set; }
+
+        public string RequestIp { get; set; }
+        public string RequestAgent { get; set; }
+        public string RequestRaw { get; set; }
         /// <summary>
         /// 获取域名
         /// </summary>
@@ -42,5 +49,14 @@
         public string Appl_Physical_Path { get; set; }
 
         #endregion
+
+        private DateTime _startTime = DateTime.Now;
+
+        public DateTime startTime
+        {
+            get { return _startTime; }
+            set { _startTime = value; }
+        }
+
     }
 }
