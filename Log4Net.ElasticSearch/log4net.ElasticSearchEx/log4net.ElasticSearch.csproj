@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Title>log4net.ElasticSearch</Title>
     <AssemblyName>log4net.ElasticSearch</AssemblyName>
-    <Version>3.0.0.0</Version>
+    <Version>3.0.0.2</Version>
     <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
     <RootNamespace>log4net.ElasticSearch</RootNamespace>
     <Platforms>AnyCPU</Platforms>
@@ -28,8 +28,8 @@
   <PropertyGroup>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-    <AssemblyVersion>3.0.0.0</AssemblyVersion>
-    <FileVersion>3.0.0.0</FileVersion>
+    <AssemblyVersion>3.0.0.2</AssemblyVersion>
+    <FileVersion>3.0.0.2</FileVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Product>log4net.ElasticSearch Ex for log</Product>
   </PropertyGroup>

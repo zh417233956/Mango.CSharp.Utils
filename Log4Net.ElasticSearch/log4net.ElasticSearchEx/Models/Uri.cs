@@ -25,15 +25,16 @@ namespace log4net.ElasticSearch.Models
             //    ? new System.Uri(string.Format("{0}://{1}/{2}/logEvent{3}{4}", uri.Scheme(), uri.Server(), uri.Index(), uri.Routing(), uri.Bulk()))
             //    : new System.Uri(string.Format("{0}://{1}:{2}/{3}/logEvent{4}{5}", uri.Scheme(), uri.Server(), uri.Port(), uri.Index(), uri.Routing(), uri.Bulk()));
 
+
             if (!string.IsNullOrWhiteSpace(uri.User()) && !string.IsNullOrWhiteSpace(uri.Password()))
             {
                 return
-                    new System.Uri(string.Format("{0}://{1}:{2}@{3}:{4}/{5}/{6}{7}", uri.Scheme(), uri.User(), uri.Password(),
+                    new System.Uri(string.Format("{0}://{1}:{2}@{3}:{4}/{5}/_doc{6}{7}", uri.Scheme(), uri.User(), uri.Password(),
                                                  uri.Server(), uri.Port(), uri.Index(), uri.Routing(), uri.Bulk()));
             }
             return string.IsNullOrEmpty(uri.Port())
-                ? new System.Uri(string.Format("{0}://{1}/{2}/{3}{4}", uri.Scheme(), uri.Server(), uri.Index(), uri.Routing(), uri.Bulk()))
-                : new System.Uri(string.Format("{0}://{1}:{2}/{3}{4}{5}", uri.Scheme(), uri.Server(), uri.Port(), uri.Index(), uri.Routing(), uri.Bulk()));
+                ? new System.Uri(string.Format("{0}://{1}/{2}/_doc{3}{4}", uri.Scheme(), uri.Server(), uri.Index(), uri.Routing(), uri.Bulk()))
+                : new System.Uri(string.Format("{0}://{1}:{2}/{3}/_doc{4}{5}", uri.Scheme(), uri.Server(), uri.Port(), uri.Index(), uri.Routing(), uri.Bulk()));
         }
 
         public static Uri For(string connectionString)
