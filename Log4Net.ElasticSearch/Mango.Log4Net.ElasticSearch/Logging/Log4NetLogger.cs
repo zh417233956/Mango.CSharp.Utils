@@ -117,7 +117,7 @@ namespace Mango.Log4Net.ElasticSearch.Logging
                     _message.RequestAgent = context.Request.Headers["User-Agent"].ToString();
                     _message.RequestRaw = context.Request.Path.ToString() + context.Request.QueryString.ToString();
                     ltctraid = context.Response.Headers["x-mg-ltctraid"].ToString();
-                    requestid = context.Response.Headers["x-mg-requestpid"].ToString();
+                    requestid = context.Response.Headers["x-mg-requestid"].ToString();
                 }
                 
 #elif NETSTANDARD
@@ -134,7 +134,7 @@ namespace Mango.Log4Net.ElasticSearch.Logging
                     _message.RequestAgent = context.Request.Headers["User-Agent"].ToString();
                     _message.RequestRaw = context.Request.Path.Value + context.Request.QueryString.Value;
                     ltctraid = context.Response.Headers["x-mg-ltctraid"].ToString();
-                    requestid = context.Response.Headers["x-mg-requestpid"].ToString();
+                    requestid = context.Response.Headers["x-mg-requestid"].ToString();
                 }
                 else
                 {                    
